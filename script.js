@@ -8,7 +8,7 @@ for(let i=0; i<hours.length; i++) {
     var row = `<div class='row row${i}'>`;
     var hour = `<div class='hour col-2 col-sm-2 col-md-1'>${hours[i]}${morningAfternoon[i]}`;
     var text = `<textarea class='textarea${i}'>`;
-    var save = `<button class="saveBtn col-2 col-sm-2 col-md-1">`;
+    var save = `<button class="saveBtn col-2 col-sm-2 col-md-1">Save`;
     $(".container").append(row);
     var currentRow = $(`.row${i}`)
     currentRow.append(hour);
@@ -33,3 +33,7 @@ for(let i=0; i<hours.length; i++) {
         $(`.textarea${i}`).attr("class", `textarea${i} present col-8 col-sm-8 col-md-10`);
     }
 }
+
+
+// event listeners
+// local storage
