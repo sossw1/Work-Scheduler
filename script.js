@@ -15,10 +15,20 @@ for(let i=0; i<hours.length; i++) {
     currentRow.append(save);
 };
 // Find out which time block INDEX is present (if any)
-var present;
-var currentHour = parseInt(moment().format("hh"));
+var presentIndex;
+var presentHour = parseInt(moment().format("hh"));
 for(let i=0; i<hours.length; i++) {
-    if(currentHour == hours[i]) {
-        present = i;
+    if(presentHour == hours[i]) {
+        presentIndex = i;
+    }
+}
+// Set classes based on time
+for(let i=0; i<hours.length; i++) {
+    if(i<presentIndex) {
+        $(`.textarea${i}`).attr("class", `textarea${i} past col-8 col-sm-8 col-md-10`);
+    } else if (i>presentIndex) {
+        $(`.textarea${i}`).attr("class", `textarea${i} future col-8 col-sm-8 col-md-10`);
+    } else {
+        $(`.textarea${i}`).attr("class", `textarea${i} present col-8 col-sm-8 col-md-10`);
     }
 }
