@@ -15,6 +15,10 @@ for(let i=0; i<hours.length; i++) {
     currentRow.append(text);
     currentRow.append(save);
 };
+
+// Pull stored values
+pullStorage();
+
 // Find out which time block INDEX is present (if any)
 var presentIndex;
 var presentHour = parseInt(moment().format("hh"));
@@ -24,6 +28,7 @@ for(let i=0; i<hours.length; i++) {
         presentIndex = i;
     }
 }
+
 // Set classes based on time
 for(let i=0; i<hours.length; i++) {
     if(i<presentIndex) {
@@ -39,8 +44,19 @@ for(let i=0; i<hours.length; i++) {
 for(let i=0; i<hours.length; i++) {
     $(`.save${i}`).on("click",function(){
         // call function to update local storage
-
+        updateStorage(i);
     });
 }
 
-// local storage
+// Updates the local storage vars for specified time block
+function updateStorage(index) {
+    var val = $(`.textarea${index}`)[0].value;
+    localStorage.setItem(`timeBlock${index}`,val);
+}
+
+// Pulls stored values and updates each text area
+function pullStorage() {
+    for(let i=0; i<hours.length; i++) {
+        $(`.textarea${i}`)[0].value = localStorage.getItem(`timeBlock${i}`);
+    }
+}
